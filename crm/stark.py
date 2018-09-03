@@ -59,9 +59,74 @@ class CusotmerConfig(ModelStark):
         obj.course.remove(course_id)
         return redirect(self.get_list_url())
 
+    def public_customer(self,request):
+        """公共客户"""
+        # 未报名 且3天未跟进或者15天未成单
+
+        from django.db.models import Q
+        import datetime
+        now =datetime.datetime.now()
+        print(now)
+        '''
+        datetime.datetime
+        datetime.time
+        datetime.date
+        datetime.timedelta(days=7)
+        '''
+
+        # 3天未跟进 now - last_consult_date > 3   ----> last_consult_date < now-3
+        # 15天未成单 now - recv_date > 3   ----> recv_date < now-15
+        delta_day3 = datetime.timedelta(days=3)
+        delta_day15 = datetime.timedelta(days=15)
+
+        user_id = 2
+        # Customer.objects.filter(status=2,last_consult_date__lt=now-3)
+        # customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2)
+
+        # 过滤掉 我的客户
+        customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2).exclude(consultant=user_id)
+
+        print('public_customer_list',customer_list)
+
+        return render(request,'public.html',locals())
+
+    def further(self,request,customer_id):
+        user_id = 2  # request.session.get("user_id")
+
+        import datetime
+        now =datetime.datetime.now()
+        delta_day3 = datetime.timedelta(days=3)
+        delta_day15 = datetime.timedelta(days=15)
+        from django.db.models import Q
+
+
+        # 更改客户的课程顾问，和相应的时间
+        # Customer.objects.filter(pk=customer_id).update(consultant=user_id,last_consult_date=now,recv_date=now)
+        ret = Customer.objects.filter(pk=customer_id).filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2).update(consultant=user_id,last_consult_date = now,recv_date=now)
+        if not ret:
+            return HttpResponse('已经被跟进了')
+
+        # 客户跟进表的数据
+        CustomerDistrbute.objects.create(customer_id=customer_id,consultant_id=user_id,date=now,status=1)
+
+        return HttpResponse('跟进成功')
+
+
+
+    def mycustomer(self,request):
+        user_id = 2
+        customer_distrbute_list = CustomerDistrbute.objects.filter(consultant=user_id)
+        print('customer_distrbute_list',customer_distrbute_list)
+        return render(request,'mycustomer.html',locals())
+
+
+
     def extra_url(self):
         temp = []
         temp.append(url(r"cancel_course/(\d+)/(\d+)", self.cancel_course))
+        temp.append(url(r"public/", self.public_customer))
+        temp.append(url(r"further/(\d+)", self.further))
+        temp.append(url(r"mycustomer/", self.mycustomer))
         return temp
 
 

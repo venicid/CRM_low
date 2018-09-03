@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<h3>公共客户</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1">
+            <form action="" method="post">
+                {% csrf_token %}
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>QQ</th>
+                        <th>跟进详情</th>
+                        <th>是否跟进</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for customer in customer_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.qq }}</td>
+                            <td><a href="/stark/crm/consultrecord/?customer={{ customer.pk }}">跟进记录</a></td>
+                            <td><a href="/stark/crm/customer/further/{{ customer.pk }}">是</a></td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

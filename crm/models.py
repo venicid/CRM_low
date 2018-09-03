@@ -273,3 +273,25 @@ class StudyRecord(models.Model):
 
     def __str__(self):
         return "{0}-{1}".format(self.course_record, self.student)
+
+
+class CustomerDistrbute(models.Model):
+    customer = models.ForeignKey("Customer", related_name="customers",on_delete=True)
+    consultant = models.ForeignKey(verbose_name="课程顾问", to="UserInfo", limit_choices_to={"depart_id": 1001},on_delete=True)
+    date = models.DateField()
+    status = (
+        (1, "正在跟进"),
+        (2, "已报名"),
+        (3, "三天未跟进"),
+        (4, "15天未成单"),
+    )
+    status = models.IntegerField(choices=status, default=1)
+
+    memo = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.customer.name+":"+self.consultant.name
+
+
+
+
