@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fb5e2481-645c-48bd-8311-a595e8195ba3" name="Default" comment="">
+    <list default="true" id="fb5e2481-645c-48bd-8311-a595e8195ba3" name="Default" comment="04 - 添加 94天的程序">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/94天.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -582,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536044690885</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="04 - 添加 94天的程序">
+      <created>1536045152521</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536045152521</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -596,9 +604,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1672" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21776505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21776505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31303725" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -638,7 +646,8 @@
     <MESSAGE value="02 - 销售与客户 ， 跟进 不跟进" />
     <MESSAGE value="02 - 销售与客户  finish" />
     <MESSAGE value="03 - rbac组件完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="03 - rbac组件完成" />
+    <MESSAGE value="04 - 添加 94天的程序" />
+    <option name="LAST_COMMIT_MESSAGE" value="04 - 添加 94天的程序" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
