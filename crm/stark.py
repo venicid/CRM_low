@@ -59,11 +59,12 @@ class CusotmerConfig(ModelStark):
         obj.course.remove(course_id)
         return redirect(self.get_list_url())
 
+
     def public_customer(self,request):
         """公共客户"""
         # 未报名 且3天未跟进或者15天未成单
 
-        from django.db.models import Q
+
         import datetime
         now =datetime.datetime.now()
         print(now)
@@ -79,13 +80,15 @@ class CusotmerConfig(ModelStark):
         delta_day3 = datetime.timedelta(days=3)
         delta_day15 = datetime.timedelta(days=15)
 
-        user_id = 2
+        from django.db.models import Q
+
         # Customer.objects.filter(status=2,last_consult_date__lt=now-3)
         # customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2)
 
         # 过滤掉 我的客户
+        user_id = 2
         customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2).exclude(consultant=user_id)
-
+        print(customer_list.query)
         print('public_customer_list',customer_list)
 
         return render(request,'public.html',locals())
@@ -131,6 +134,8 @@ class CusotmerConfig(ModelStark):
 
 
 site.register(Customer, CusotmerConfig)
+
+
 site.register(Department)
 site.register(Course)
 
@@ -140,6 +145,7 @@ class ConsultConfig(ModelStark):
 
 
 site.register(ConsultRecord, ConsultConfig)
+
 
 
 class CourseRecordConfig(ModelStark):
@@ -238,6 +244,7 @@ class StudyRecordConfig(ModelStark):
 
 
 site.register(StudyRecord, StudyRecordConfig)
+
 
 
 class StudentConfig(ModelStark):
