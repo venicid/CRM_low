@@ -1,0 +1,32 @@
+{% extends 'rbac/base.html' %}
+
+
+{% block content %}
+    <h4>role列表</h4>
+    {% if per.add %}
+        <a href="/roles/add/" class="btn btn-primary">添加角色</a>
+    {% endif %}
+
+
+    <table class="table table-bordered table-striped">
+        <tbody>
+        {% for role in role_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ role.title }}</td>
+                <td>
+                    {% if per.edit %}
+                        <a href="/roles/edit/{{ role.pk }}" class="btn btn-success">编辑</a>
+                    {% endif %}
+
+                    {% if per.delete %}
+                        <a href="/roles/delete/{{ role.pk }}" class="btn btn-danger">删除</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: #369;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    background-color: gainsboro;
+    width: 20%;
+}
+
+.content {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    padding: 30px;
+
+    overflow: auto;
+/ / 在a和b模板中进行切换
+}
+
+.menu_btn {
+    display: block;
+}

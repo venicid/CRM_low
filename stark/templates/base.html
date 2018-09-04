@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="/static/css/add.css">
+    <link rel="stylesheet" href="/static/css/list.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+
+</head>
+<body>
+
+
+<div class="header">
+    <span style="background-color: azure">{{ user.name }}</span>
+
+</div>
+
+<div class="container">
+
+    {% load my_tags %}
+    <div class="menu left">
+        {% get_menu request %}
+    </div>
+
+
+    <div class="content right">
+        {% block content %}
+
+
+        {% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -17,6 +17,7 @@ class Department(models.Model):
         return self.title
 
 
+from rbac.models import User
 class UserInfo(models.Model):
     """
     员工表
@@ -28,6 +29,8 @@ class UserInfo(models.Model):
     email = models.EmailField(verbose_name='邮箱', max_length=64)
 
     depart = models.ForeignKey(verbose_name='部门', to="Department", to_field="code", on_delete=True)
+
+    user= models.OneToOneField(to=User,null=True,on_delete=True)
 
     def __str__(self):
         return self.name

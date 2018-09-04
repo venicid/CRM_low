@@ -86,7 +86,8 @@ class CusotmerConfig(ModelStark):
         # customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2)
 
         # 过滤掉 我的客户
-        user_id = 2
+        # user_id = 2
+        user_id = request.session.get('user_id')
         customer_list = Customer.objects.filter(Q(last_consult_date__lt=now-delta_day3)|Q(recv_date__lt=now-delta_day15),status=2).exclude(consultant=user_id)
         print(customer_list.query)
         print('public_customer_list',customer_list)
@@ -94,8 +95,8 @@ class CusotmerConfig(ModelStark):
         return render(request,'public.html',locals())
 
     def further(self,request,customer_id):
-        user_id = 2  # request.session.get("user_id")
-
+        # user_id = 2  # request.session.get("user_id")
+        user_id = request.session.get('user_id')
         import datetime
         now =datetime.datetime.now()
         delta_day3 = datetime.timedelta(days=3)
@@ -117,7 +118,8 @@ class CusotmerConfig(ModelStark):
 
 
     def mycustomer(self,request):
-        user_id = 2
+        # user_id = 2
+        user_id = request.session.get('user_id')
         customer_distrbute_list = CustomerDistrbute.objects.filter(consultant=user_id)
         print('customer_distrbute_list',customer_distrbute_list)
         return render(request,'mycustomer.html',locals())
@@ -287,7 +289,7 @@ class StudentConfig(ModelStark):
     def extra_url(self):
         """查看成绩url"""
         temp = []
-        temp.append(url(r"score_view/(\d+)", self.score_view))
+        temp.append(url(r"score_view/(\d+)/", self.score_view))
         return temp
 
     def score_show(self, obj=None, header=False):
